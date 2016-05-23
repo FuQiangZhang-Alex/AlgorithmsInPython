@@ -3,19 +3,19 @@
 def select_max(lst):
     if not isinstance(lst, list):
         return None
-    max_index = 0
+    min_index = 0
     for index, item in enumerate(lst):
-        if item > lst[max_index]:
-            max_index = index
-    return max_index
+        if item < lst[min_index]:
+            min_index = index
+    return min_index
 
 
 def select_sort(lst):
     if not isinstance(lst, list):
         return None
     for index, item in enumerate(lst):
-        max_index = select_max(lst[:len(lst) - index])
-        lst[max_index], lst[len(lst) - index - 1] = lst[len(lst) - index - 1], lst[max_index]
+        min_index = select_max(lst[index:])
+        lst[min_index + index], lst[index] = lst[index], lst[min_index + index]
     return lst
 
 arr = [3, 4, 1, 7, 0, 2, 11, 4, 8]
