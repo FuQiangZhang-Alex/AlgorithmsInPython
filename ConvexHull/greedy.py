@@ -28,7 +28,13 @@ def calculate_angle(points):
         x1, y1 = point.x, point.y
         angle = None
         if y0 == y1:
-            point.angle = 90
+            if x1 > x0:
+                point.angle = 90
+            elif x1 < x0:
+                point.angle = -90
+            else:
+                points_lst.remove(point)
+                continue
         else:
             tan = (x0 - x1) / (y0 - y1)
             point.angle = math.atan(tan) * 180 / math.pi
